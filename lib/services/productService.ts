@@ -18,47 +18,25 @@ import { Product } from '@/lib/types';
 export const productService = {
     // Get all products
     async getAllProducts(): Promise<Product[]> {
-        const productsRef = collection(db, 'products');
-        const q = query(productsRef, orderBy('createdAt', 'desc'));
-        const snapshot = await getDocs(q);
-
-        return snapshot.docs.map(doc => ({
-            id: doc.id,
-            ...doc.data(),
-            createdAt: doc.data().createdAt?.toDate() || new Date(),
-        })) as Product[];
+        const res = await fetch('/api/products');
+        if (!res.ok) throw new Error('Failed to fetch products');
+        const products = await res.json();
+        return products.map((p: any) => ({
+            ...p,
+            createdAt: new Date(p.createdAt)
+        }));
     },
 
     // Get products by category
     async getProductsByCategory(category: string): Promise<Product[]> {
-        const productsRef = collection(db, 'products');
-        const q = query(
-            productsRef,
-            where('category', '==', category),
-            orderBy('createdAt', 'desc')
-        );
-        const snapshot = await getDocs(q);
-
-        return snapshot.docs.map(doc => ({
-            id: doc.id,
-            ...doc.data(),
-            createdAt: doc.data().createdAt?.toDate() || new Date(),
-        })) as Product[];
+        const products = await this.getAllProducts();
+        return products.filter(p => p.category === category);
     },
 
     // Get single product
     async getProduct(id: string): Promise<Product | null> {
-        const docRef = doc(db, 'products', id);
-        const docSnap = await getDoc(docRef);
-
-        if (docSnap.exists()) {
-            return {
-                id: docSnap.id,
-                ...docSnap.data(),
-                createdAt: docSnap.data().createdAt?.toDate() || new Date(),
-            } as Product;
-        }
-        return null;
+        const products = await this.getAllProducts();
+        return products.find(p => p.id === id) || null;
     },
 
     // Create product (Admin only)

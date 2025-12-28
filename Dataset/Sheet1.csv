@@ -1,0 +1,3 @@
+action,id,title,description,price,category,isCustomizable,images,features
+add,prod01,Royal Red Rose Bouquet,"Fresh premium red roses arranged in elegant wrapping, perfect for anniversaries and celebrations.",2499,Real Flowers,TRUE,https://images.unsplash.com/photo-1526047932273-341f2a7631f9,Fresh Flowers  | Handmade Arrangement | Gift Wrapped
+add,prod02,Luxury Artificial Lily Bouquet,High-quality artificial lilies with realistic finish and long-lasting beauty.,999,Artificial Flowers,FALSE,https://images.unsplash.com/photo-1616628182506-8c1d6b61d975,Long Lasting| No Maintenance| Premium Finish

@@ -150,8 +150,8 @@ export default function ProductPage() {
                                         key={index}
                                         onClick={() => setSelectedImage(index)}
                                         className={`relative h-24 rounded-lg overflow-hidden border-2 transition-all ${selectedImage === index
-                                                ? 'border-luxury-gold'
-                                                : 'border-gray-200 hover:border-luxury-gold'
+                                            ? 'border-luxury-gold'
+                                            : 'border-gray-200 hover:border-luxury-gold'
                                             }`}
                                     >
                                         <Image src={image} alt={`${product.title} ${index + 1}`} fill className="object-cover" />
@@ -186,6 +186,21 @@ export default function ProductPage() {
                             <p className="text-sm text-luxury-gray mb-2">Category</p>
                             <p className="text-luxury-black font-medium">{product.category}</p>
                         </div>
+
+                        {/* Features */}
+                        {product.features && product.features.length > 0 && (
+                            <div className="mb-8">
+                                <h3 className="text-lg font-serif font-semibold mb-3 text-luxury-black">Key Features</h3>
+                                <ul className="space-y-2">
+                                    {product.features.map((feature, index) => (
+                                        <li key={index} className="flex items-start text-luxury-gray">
+                                            <span className="mr-2 text-luxury-gold">•</span>
+                                            {feature}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
 
                         {/* Customization Options */}
                         {product.isCustomizable && (

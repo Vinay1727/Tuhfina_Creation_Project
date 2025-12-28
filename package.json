@@ -11,6 +11,7 @@
   "dependencies": {
     "@types/pdfkit": "^0.17.4",
     "@types/uuid": "^11.0.0",
+    "csv-parse": "^6.1.0",
     "firebase": "^10.13.0",
     "firebase-admin": "^13.6.0",
     "framer-motion": "^11.5.0",

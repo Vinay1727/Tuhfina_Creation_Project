@@ -13,6 +13,7 @@ export interface Product {
     category: string;
     images: string[];
     isCustomizable: boolean;
+    features?: string[];
     createdAt: Date;
 }
 
@@ -59,8 +60,8 @@ export interface Order {
 }
 
 export const CATEGORIES = [
-    'Artificial Flower Bouquets',
-    'Real Flower Bouquets',
+    'Artificial Flowers',
+    'Real Flowers',
     'Gifts',
     'Customized Earrings',
     'Customized Frames',
